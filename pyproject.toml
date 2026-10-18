@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyhik-hcnetsdk"
+version = "0.1.0.dev0"
+description = "Experimental maintenance of the pyhik Windows HCNetSDK binding"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Goudam Muralitharan"}]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Repository = "https://github.com/goudam-jm/pyhik"
+Issues = "https://github.com/goudam-jm/pyhik/issues"
+
+[project.optional-dependencies]
+dev = ["build>=1.2", "ruff>=0.9", "twine>=6"]
+
+[tool.setuptools]
+py-modules = ["hikvision_native"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

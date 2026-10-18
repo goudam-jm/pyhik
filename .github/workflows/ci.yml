@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
-      - run: python -m pip install .
+      - run: python -m pip install '.[isapi]'
       - run: python -m unittest discover -s tests -v
   packaging:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install '.[dev]'
+      - run: python -m pip install '.[dev,isapi]'
       - run: python -m ruff check .
       - run: python -m ruff format --check .
       - run: python -m build
@@ -31,5 +31,6 @@ jobs:
       - run: python tools/check_distribution.py
       - run: python -m venv /tmp/pyhik-wheel
       - run: /tmp/pyhik-wheel/bin/python -m pip install --no-deps dist/*.whl
-      - run: cd /tmp && /tmp/pyhik-wheel/bin/python -c "import hikvision_native; print(hikvision_native.__version__)"
+      - run: cd /tmp && /tmp/pyhik-wheel/bin/python -c "import importlib.util, hikvision_native, hikvision_isapi; assert importlib.util.find_spec('requests') is None"
+      - run: /tmp/pyhik-wheel/bin/python -m pip install 'pyhik-hcnetsdk[isapi]'
       - run: cd /tmp && /tmp/pyhik-wheel/bin/python -m unittest discover -s "$GITHUB_WORKSPACE/tests" -v

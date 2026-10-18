@@ -1,8 +1,8 @@
 # pyhik — maintenance work in progress
 
-Experimental modernization of 2014 Python binding for
-Hikvision's native HCNetSDK. This is the native **Device Network SDK**, not an
-ISAPI HTTP client. Nothing in this branch has been tested against a real device.
+Experimental modernization of the 2014 Hikvision HCNetSDK binding, now with
+a separate optional read-only ISAPI client. Neither backend has been tested
+against a real device in this maintenance effort.
 
 The maintenance branch supports Python 3.11+ for packaging/offline development.
 Native execution is restricted to Windows x64 and is **hardware-unverified**.
@@ -17,16 +17,39 @@ python -m pip install .
 ```
 
 The provisional distribution name is `pyhik-hcnetsdk`; the import is
-`hikvision_native`. No public release or name-availability claim is made.
-**Do not use `pip install pyhik` to install this repository**: that name belongs
-to [another project](https://pypi.org/project/pyHik/).
+`hikvision_native`, with optional HTTP functionality in `hikvision_isapi`.
+No public release or name-availability claim is made.
+The PyPI name `pyhik` does not install this repository; use the checkout
+installation instructions above.
 
 Vendor DLLs are excluded from distributions. Obtain a complete matching SDK
 bundle from Hikvision under its terms, preserve the bundle's directory layout,
 and pass its absolute `HCNetSDK.dll` path. The historical root DLL remains in Git
 for provenance, but is never automatically selected or included in builds.
 
-## Capture a snapshot
+## Read-only ISAPI (no native SDK required)
+
+```console
+python -m pip install '.[isapi]'
+```
+
+```python
+from getpass import getpass
+from hikvision_isapi import ISAPIClient
+
+with ISAPIClient("https://192.0.2.10", "admin", getpass("Device password: ")) as client:
+    print(client.get_device_info())
+    streams = client.get_streaming_channels()
+    print(streams)  # Use an ID actually reported by your device.
+    print(client.get_rtsp_url("101"))  # No credentials embedded in the URL.
+```
+
+This uses the device's HTTP(S) port, not native port 8000. HTTPS certificates
+are verified by default; pass a CA bundle path through `verify` for a private CA.
+HTTP must be selected explicitly with `http://` and does not encrypt traffic.
+See [ISAPI usage and limits](docs/isapi.md) and [examples/isapi_snapshot.py](examples/isapi_snapshot.py).
+
+## Native snapshot (Windows x64)
 
 ```python
 from getpass import getpass
@@ -73,15 +96,16 @@ see [migration notes](docs/migration.md).
 ## Offline checks
 
 ```console
+python -m pip install '.[dev,isapi]'
 python -m unittest discover -s tests -v
-python -m pip install '.[dev]'
 python -m ruff check .
 python -m ruff format --check .
 python -m build
 python -m twine check dist/*
 ```
 
-Tests use a fake native boundary and ctypes callback trampolines. Passing them
+Tests use a fake native boundary, ctypes callback trampolines, and an in-memory
+HTTP adapter exercising real Requests authentication/preparation. Passing them
 is not evidence of native/device compatibility. CI runs offline tests across
 Linux and Windows; it never loads the vendor DLL. Run the
 [ABI probe](docs/compatibility.md) and device checklist before advertising native
@@ -90,9 +114,11 @@ support.
 ## Scope and reuse
 
 This pass maintains login/logout, timeouts/reconnect, JPEG capture, raw preview,
-and legacy adapters. It does not add ISAPI, events, recordings/playback, PTZ,
-Linux native support, or a decoder. These need a separate implementation and
-hardware validation path.
+and legacy adapters. The separate read-only ISAPI client adds device information,
+capabilities, reported streaming channels, JPEG snapshots and credential-free
+RTSP URL construction. It does not add events, recordings/playback, PTZ,
+configuration writes, Linux native support, or a decoder. These need their own
+implementation and hardware validation path.
 
 See [compatibility and validation](docs/compatibility.md),
 [migration](docs/migration.md), [maintenance roadmap](docs/maintenance.md), and

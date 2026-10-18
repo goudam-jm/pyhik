@@ -23,8 +23,9 @@ def main():
         ]
         if forbidden:
             raise SystemExit(f"Unexpected distributed files in {archive}: {forbidden}")
-        if not any(Path(name).name == "hikvision_native.py" for name in names):
-            raise SystemExit(f"Binding missing from {archive}")
+        for required in ("hikvision_native.py", "hikvision_isapi.py", "THIRD_PARTY_NOTICES.md"):
+            if not any(Path(name).name == required for name in names):
+                raise SystemExit(f"{required} missing from {archive}")
         if archive.name.endswith(".tar.gz"):
             for required in ("tools/abi_probe.c", "tools/check_abi.py", "tools/check_distribution.py"):
                 if not any(name.endswith("/" + required) for name in names):

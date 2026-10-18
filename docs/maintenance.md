@@ -12,7 +12,7 @@
 
 ## Before a public maintenance release
 
-- Decide the source license and confirm package-name availability/ownership.
+- Confirm package-name availability/ownership.
 - Review vendor usage and redistribution conditions; choose and pin an SDK bundle.
 - Run the ABI probe against that bundle and complete the device checklist.
 - Record a tested compatibility matrix and review downstream migration impact.

@@ -1,5 +1,7 @@
 # pyhik — maintenance work in progress
 
+Project source is licensed under the [MIT License](LICENSE).
+
 Experimental modernization of the 2014 Hikvision HCNetSDK binding, now with
 a separate optional read-only ISAPI client. Neither backend has been tested
 against a real device in this maintenance effort.
@@ -123,8 +125,3 @@ implementation and hardware validation path.
 See [compatibility and validation](docs/compatibility.md),
 [migration](docs/migration.md), [maintenance roadmap](docs/maintenance.md), and
 [changelog](CHANGELOG.md).
-
-No open-source license was present in the original tree. Source licensing and
-vendor redistribution terms still need the owner's decision before a public
-package release; this maintenance pass does not invent a license or grant rights
-to the vendor binary.

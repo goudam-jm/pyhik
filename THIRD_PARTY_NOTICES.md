@@ -16,9 +16,10 @@ For clarity about the historical relationship:
   itself establish that the current ISAPI implementation derives from the native
   wrapper. No claim of endorsement or collaboration is made.
 
-The reference's MIT notice is reproduced below for attribution. It does not
-choose a license for this repository's original or new source, or grant rights
-to Hikvision's vendor binaries.
+Project source code and documentation are licensed under the [MIT License](LICENSE).
+The reference's MIT notice is retained below for attribution. Hikvision vendor
+binaries, including `HCNetSDK.dll`, are excluded from the project's MIT license
+and remain subject to Hikvision's own license terms.
 
 ## mezz64/pyHik license notice
 

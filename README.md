@@ -1,6 +1,6 @@
 # pyhik — maintenance work in progress
 
-Experimental modernization of Goudam Muralitharan's 2014 Python binding for
+Experimental modernization of 2014 Python binding for
 Hikvision's native HCNetSDK. This is the native **Device Network SDK**, not an
 ISAPI HTTP client. Nothing in this branch has been tested against a real device.
 

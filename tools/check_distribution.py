@@ -23,7 +23,7 @@ def main():
         ]
         if forbidden:
             raise SystemExit(f"Unexpected distributed files in {archive}: {forbidden}")
-        for required in ("hikvision_native.py", "hikvision_isapi.py", "THIRD_PARTY_NOTICES.md"):
+        for required in ("hikvision_native.py", "hikvision_isapi.py", "LICENSE", "THIRD_PARTY_NOTICES.md"):
             if not any(Path(name).name == required for name in names):
                 raise SystemExit(f"{required} missing from {archive}")
         if archive.name.endswith(".tar.gz"):

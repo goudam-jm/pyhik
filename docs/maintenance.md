@@ -19,11 +19,19 @@
 - Use build/install verification and an intentional version tag. There is no
   automatic publishing workflow in this branch.
 
+## Read-only ISAPI follow-up
+
+The optional `hikvision_isapi` module now covers device information, capability
+XML, reported streaming channels, JPEG snapshots and credential-free RTSP URL
+construction. Its design uses mezz64/pyHik as an attributed reference, with
+independently implemented transport/parsing and synthetic protocol tests. It
+uses explicit HTTP(S) origins, Digest authentication and verified TLS defaults.
+The native backend remains separately available without HTTP dependencies.
+
 ## Later feature development
 
-ISAPI is a candidate primary interface for modern devices, with the native
-backend retained where needed. That is a separate project stage. Begin with
-model-specific vendor documentation and device information, capability discovery,
-channels and snapshots; then evaluate recording search/download and events.
+Validate the read-only ISAPI slice using model-specific vendor documentation
+and actual devices before advertising support. Then evaluate recording
+search/download and events, keeping native functionality where needed.
 Do not promise endpoint parity, async wrappers, Linux support, PTZ or playback
 without implementation and real-device evidence.

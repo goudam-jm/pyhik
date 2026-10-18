@@ -5,13 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pyhik-hcnetsdk"
 version = "0.1.0.dev0"
-description = "Experimental maintenance of the pyhik Windows HCNetSDK binding"
+description = "Experimental Hikvision native SDK maintenance and read-only ISAPI client"
 readme = "README.md"
+license-files = ["THIRD_PARTY_NOTICES.md"]
 requires-python = ">=3.11"
 authors = [{name = "Goudam Muralitharan"}]
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",
   "Operating System :: Microsoft :: Windows",
+  "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
 ]
 
@@ -20,10 +22,11 @@ Repository = "https://github.com/goudam-jm/pyhik"
 Issues = "https://github.com/goudam-jm/pyhik/issues"
 
 [project.optional-dependencies]
+isapi = ["requests>=2.32", "defusedxml>=0.7.1"]
 dev = ["build>=1.2", "ruff>=0.9", "twine>=6"]
 
 [tool.setuptools]
-py-modules = ["hikvision_native"]
+py-modules = ["hikvision_native", "hikvision_isapi"]
 
 [tool.ruff]
 target-version = "py311"

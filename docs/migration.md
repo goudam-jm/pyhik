@@ -2,9 +2,7 @@
 
 The installed module is now `hikvision_native`. The root `pyhik.py` is a
 source-checkout shim that emits a DeprecationWarning; it is intentionally
-excluded from wheel and source distributions to avoid clashing with the
-separately maintained PyPI `pyHik` package. Original history remains in Git.
-See [reference provenance](../THIRD_PARTY_NOTICES.md) for the historical fork relationship.
+excluded from wheel and source distributions. Original history remains in Git.
 
 Core camelCase wrappers remain available from `hikvision_native`: init/release,
 login/logout, timeouts/reconnect, preview, JPEG capture and error helpers. Prefer

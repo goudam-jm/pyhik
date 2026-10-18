@@ -19,9 +19,8 @@ python -m pip install .
 The provisional distribution name is `pyhik-hcnetsdk`; the import is
 `hikvision_native`, with optional HTTP functionality in `hikvision_isapi`.
 No public release or name-availability claim is made.
-**Do not use `pip install pyhik` to install this repository**: that name belongs
-to [mezz64/pyHik](https://pypi.org/project/pyHik/). Its author also forked this
-repository as `mezz64/pyhik-1`; see [reference attribution and history](THIRD_PARTY_NOTICES.md).
+The PyPI name `pyhik` does not install this repository; use the checkout
+installation instructions above.
 
 Vendor DLLs are excluded from distributions. Obtain a complete matching SDK
 bundle from Hikvision under its terms, preserve the bundle's directory layout,

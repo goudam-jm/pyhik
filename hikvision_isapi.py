@@ -1,7 +1,6 @@
 """Experimental read-only ISAPI client; no native SDK is required.
 
-API/endpoint reference: mezz64/pyHik at bc2c0dff65295a70f0af6e7914219525d37023b4.
-See THIRD_PARTY_NOTICES.md for attribution. No vendor device has been tested.
+No vendor device has been tested. See docs/isapi.md for supported scope.
 """
 
 from __future__ import annotations

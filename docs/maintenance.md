@@ -23,9 +23,8 @@
 
 The optional `hikvision_isapi` module now covers device information, capability
 XML, reported streaming channels, JPEG snapshots and credential-free RTSP URL
-construction. Its design uses mezz64/pyHik as an attributed reference, with
-independently implemented transport/parsing and synthetic protocol tests. It
-uses explicit HTTP(S) origins, Digest authentication and verified TLS defaults.
+construction. It includes transport/parsing and synthetic protocol tests, with
+explicit HTTP(S) origins, Digest authentication and verified TLS defaults.
 The native backend remains separately available without HTTP dependencies.
 
 ## Later feature development

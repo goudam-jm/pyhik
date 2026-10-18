@@ -1,14 +1,12 @@
 # Read-only ISAPI client
 
-`hikvision_isapi.ISAPIClient` is a separate synchronous HTTP client inspired by
-[mezz64/pyHik](https://github.com/mezz64/pyHik), not a replacement for the native
-`hikvision_native.SDK`. See [reference provenance](../THIRD_PARTY_NOTICES.md) for
-the exact reference commit, MIT attribution and historical fork relationship.
+`hikvision_isapi.ISAPIClient` provides synchronous HTTP access to device reads.
+Native SDK functionality remains available through `hikvision_native.SDK`.
 
 Install from this checkout with `python -m pip install '.[isapi]'`. The base
 package still imports without Requests, defusedxml or vendor DLLs. Constructing
 an ISAPI client without its extra raises `ISAPIDependencyError` with installation
-instructions. There is no import from, or dependency on, the PyPI `pyHik` package.
+instructions.
 
 ## Supported operations
 
@@ -29,7 +27,7 @@ instructions. There is no import from, or dependency on, the PyPI `pyHik` packag
   HTTPS on the control plane does not imply RTSPS support; select it explicitly
   only when your device supports it. Supply player credentials separately.
 
-Device endpoints are the reference project's standard ISAPI paths. There is no
+The client uses standard ISAPI device paths. There is no
 HTTP-to-native fallback, fabricated NVR stream enumeration, background thread,
 implicit caching, raw arbitrary-endpoint method, or device-changing operation.
 
@@ -81,5 +79,5 @@ claims, compare information/stream IDs with a physical device, retrieve and
 open a real JPEG, test bad credentials/permissions and validate certificate
 handling and firmware-specific capability responses.
 
-Events, recording search/download, PTZ, configuration writes and full feature
-parity with the reference project remain outside this slice.
+Events, recording search/download, PTZ and configuration writes remain outside
+this slice.

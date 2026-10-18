@@ -7,9 +7,8 @@
 Adds optional `hikvision_isapi` device information, capability XML, stream
 listing, JPEG retrieval and credential-free RTSP URLs. Uses Digest auth,
 explicit HTTP(S) origins, verified TLS, typed errors and hardened XML parsing.
-Adds synthetic HTTP/authentication tests and documents mezz64/pyHik as a pinned,
-attributed reference, including the historical fork relationship. Native SDK
-behavior remains unchanged; neither backend claims real-device validation.
+Adds synthetic HTTP/authentication tests. Native SDK behavior remains unchanged;
+neither backend claims real-device validation.
 
 ### Native maintenance baseline
 
